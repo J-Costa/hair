@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  email: MyString
-  password_digest: MyString
+  description: MyString
+  address: MyString
   phone: MyString
 
 two:
   name: MyString
-  email: MyString
-  password_digest: MyString
+  description: MyString
+  address: MyString
   phone: MyString

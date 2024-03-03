@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2024-03-03 12:33:05
+  finish: 2024-03-03 12:33:05
+  free: false
+
+two:
+  start: 2024-03-03 12:33:05
+  finish: 2024-03-03 12:33:05
+  free: false

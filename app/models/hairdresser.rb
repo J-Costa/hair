@@ -1,2 +1,0 @@
-class Hairdresser < ApplicationRecord
-end

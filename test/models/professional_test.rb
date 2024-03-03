@@ -1,6 +1,6 @@
 require "test_helper"
 
-class HairdresserTest < ActiveSupport::TestCase
+class ProfessionalTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
