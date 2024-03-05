@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'customers/new'
-  get 'services/index'
-  get 'professionals/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -14,4 +11,8 @@ Rails.application.routes.draw do
   resources :professionals, path: "profissionais"
   resources :customers, path: "clientes", path_names: { new: "cadastrar" }
   resources :services, path: "servicos"
+
+  get 'login', to: 'user_sessions#new', as: :login
+  post 'login', to: 'user_sessions#create', as: :login_post
+  delete 'logout', to: 'user_sessions#destroy'
 end

@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
     if @customer.save
       redirect_to services_path, notice: "Conta criada com sucesso!"
     else
-      render :new, alert: "Erro ao criar conta!"
+      render :new, status: :unprocessable_entity, alert: "Erro ao criar conta!"
     end
   end
 
