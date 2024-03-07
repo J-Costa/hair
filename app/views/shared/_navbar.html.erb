@@ -29,6 +29,11 @@
       <li>
         <%= link_to "Serviços", services_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{current_page?(services_path) ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
       </li>
+      <% if current_professional&.admin? %>
+        <li>
+          <%= link_to "Gerenciar Profissionais", admin_professionals_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{current_page?(admin_professionals_path) ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
+        </li>
+      <% end %>
     </ul>
   </div>
   </div>

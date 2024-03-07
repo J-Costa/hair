@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :customers, path: "clientes", path_names: { new: "cadastrar" }
   resources :services, path: "servicos"
 
+  namespace :admin do
+    resources :professionals, path: "gerenciar_profissionais"
+  end
+
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create', as: :login_post
   delete 'logout', to: 'user_sessions#destroy'
