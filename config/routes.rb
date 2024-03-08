@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :professionals, path: "gerenciar_profissionais"
+    resources :stores, path: "gerenciar_lojas"
   end
 
   get 'login', to: 'user_sessions#new', as: :login

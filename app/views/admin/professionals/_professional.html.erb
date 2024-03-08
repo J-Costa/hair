@@ -1,32 +1,26 @@
-<div class="">
-  <div class="overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">E-mail</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefone</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Administrador</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <tr>
-          <td class="px-6 py-4 whitespace-nowrap"><%= professional.name || "N/D" %></td>
-          <td class="px-6 py-4 whitespace-nowrap"><%= professional.email || "N/D" %></td>
-          <td class="px-6 py-4 whitespace-nowrap"><%= professional.phone || "N/D" %></td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <% if professional.admin? %>
-              <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">SIM</span>
-            <% end %>
-          </td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <%= link_to 'Editar', edit_admin_professional_path(professional), class: "text-blue-600 hover:text-blue-900" %>
-            </td>
-          <td class="px-6 py-4 whitespace-nowrap">
-            <%= link_to 'Excluir', admin_professional_path(professional), method: :delete, data: { confirm: 'Tem certeza?' }, class: "text-red-600 hover:text-red-900" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<tr>
+  <td class="px-6 py-4 whitespace-nowrap"><%= professional.name || "N/D" %></td>
+  <td class="px-6 py-4 whitespace-nowrap"><%= professional.email || "N/D" %></td>
+  <td class="px-6 py-4 whitespace-nowrap"><%= professional.phone || "N/D" %></td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <% if professional.admin? %>
+      <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">SIM</span>
+    <% end %>
+  </td>
+  <td class="px-1 py-4 whitespace-nowrap">
+    <%= link_to edit_admin_professional_path(professional), class: "text-blue-600 inline-flex items-center hover:text-white border border-blue-600 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-900 hover:text-white" do %>
+      <svg class="w-5 h-5 mr-1 -ml-1 fill-transparent" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.3 4.8 2.9 2.9M7 7H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11c.6 0 1-.4 1-1v-4.5m2.4-10a2 2 0 0 1 0 3l-6.8 6.8L8 14l.7-3.6 6.9-6.8a2 2 0 0 1 2.8 0Z" clip-rule="evenodd"></path>
+      </svg>
+      Editar
+    <% end %>
+    </td>
+  <td class="px-1 py-4 whitespace-nowrap">
+    <%= link_to admin_professional_path(professional), data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' }, class: "text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" do %>
+      <svg class="w-5 h-5 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      Excluir
+    <% end %>
+  </td>
+</tr>

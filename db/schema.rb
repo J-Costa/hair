@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_155226) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_163251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +21,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_155226) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "professional_id", null: false
+    t.bigint "store_id", null: false
     t.index ["professional_id"], name: "index_available_times_on_professional_id"
+    t.index ["store_id"], name: "index_available_times_on_store_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -65,5 +67,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_155226) do
   end
 
   add_foreign_key "available_times", "professionals"
+  add_foreign_key "available_times", "stores"
   add_foreign_key "services", "professionals"
 end

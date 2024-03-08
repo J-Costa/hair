@@ -18,7 +18,7 @@
         </svg>
     </button>
   </div>
-  <div :class="{ 'hidden': !open }" class="items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+  <div :class="{ 'hidden': !open }" class="hidden items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
     <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-hite-800 md:dark:bg-gray-300 dark:border-gray-700">
       <li>
         <a href="/" class="block py-2 px-3 text-dark md:bg-transparent md:p-0 <%= current_page?(root_path) ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded' %>">Home</a>
@@ -31,7 +31,7 @@
       </li>
       <% if current_professional&.admin? %>
         <li>
-          <%= link_to "Gerenciar Profissionais", admin_professionals_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{current_page?(admin_professionals_path) ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
+          <%= link_to "Gerenciamento", admin_professionals_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{request.path.include?('admin') ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
         </li>
       <% end %>
     </ul>
