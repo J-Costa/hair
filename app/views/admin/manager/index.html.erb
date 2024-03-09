@@ -5,7 +5,7 @@
 </div>
 
 <div class="mt-4 container border-solid border border-gray-600 rounded-lg">
-  <%= turbo_frame_tag "stores", src: admin_stores_path, turbo_visit_control: :reload do %>
+  <%= turbo_frame_tag "stores", src: admin_stores_path do %>
     <%= render "shared/skeleton" %>
   <% end %>
 </div>

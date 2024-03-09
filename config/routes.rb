@@ -14,8 +14,16 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :manager, path: "administracao", only: [:index]
-    resources :professionals, path: "gerenciar_profissionais"
-    resources :stores, path: "gerenciar_lojas"
+    resources :professionals, path: "gerenciar_profissionais" do
+      resources :available_times, path: "horarios_disponiveis", only: %i[create new] do
+        member {}
+      end
+    end
+    resources :stores, path: "gerenciar_lojas" do
+      resources :available_times, path: "horarios_disponiveis", only: %i[create new] do
+        member {}
+      end
+    end
   end
 
   get 'login', to: 'user_sessions#new', as: :login
