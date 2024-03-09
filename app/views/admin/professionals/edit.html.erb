@@ -1,7 +1,8 @@
-<section class="bg-white">
-  <%= render "shared/simple_alert" %>
-  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-      <h2 class="mb-4 text-xl font-bold text-gray-900">Editar profissional: <%= @professional.name %></h2>
-      <%= render "form" %>
+<turbo-frame id="professionals">
+  <div class="bg-white p-4">
+    <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+        <h2 class="mb-4 text-xl font-bold text-gray-900">Editar profissional: <%= @professional.name %></h2>
+        <%= render "form" %>
+    </div>
   </div>
-</section>
+</turbo-frame>

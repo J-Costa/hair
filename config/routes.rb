@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :services, path: "servicos"
 
   namespace :admin do
+    resources :manager, path: "gerenciar", only: [:index]
     resources :professionals, path: "gerenciar_profissionais"
     resources :stores, path: "gerenciar_lojas"
   end
