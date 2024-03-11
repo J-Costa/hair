@@ -1,3 +1,3 @@
 class Store < ApplicationRecord
-  has_many :available_times
+  has_many :available_times, as: :timeable
 end
