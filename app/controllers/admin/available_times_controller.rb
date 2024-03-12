@@ -10,7 +10,6 @@ class Admin::AvailableTimesController < Admin::BaseController
 
   def create
     if (@available_times = @resource.available_times.create(available_times_params))
-      binding.break
       redirect_to polymorphic_path([:admin, @resource, :available_times]), notice: "Horários disponíveis salvos com sucesso"
     else
       render :new, status: :unprocessable_entity, alert: "Erro a salvar o horário disponível"

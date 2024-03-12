@@ -1,0 +1,17 @@
+  
+  <%= link_to admin_manager_index_path, data: { turbo_action: "replace" } do %>
+    <div class="w-32 flex items-center justify-center px-5 py-2 mb-4 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 hover:bg-gray-100" >
+      <svg class="w-5 h-5 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+      </svg>
+      <span class="align-middle">Voltar</span>
+    </div>
+  <% end %>
+
+  <%# tentativa com turbo%>
+  <%#<div class="w-32 flex items-center justify-center px-5 py-2 mb-4 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 hover:bg-gray-100" onclick="history.back(); return false;" data-turbo-action="replace">
+      <svg class="w-5 h-5 text-gray-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+      </svg>
+      <span class="align-middle">Voltar</span>
+    </div> %>
