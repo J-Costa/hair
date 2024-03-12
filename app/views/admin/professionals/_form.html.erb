@@ -14,7 +14,7 @@
               </div>
               <div>
                   <%= label_tag "administrador?", nil, class: "block mb-2 text-sm font-medium text-gray-900" %>
-                  <%= select_tag :admin, options_for_select([['Não', false], ['Sim', true]], 'no'), class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.500ay-600er-gray-400g-primary-500der-primary-500' %>
+                  <%= select_tag :admin, options_for_select([['Não', false], ['Sim', true]], @professional.admin?), class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.500ay-600er-gray-400g-primary-500der-primary-500' %>
               </div>
               <div>
                 <%= f.submit "Salvar Profissional", class: "inline-flex items-center justify-center w-full px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800" %>

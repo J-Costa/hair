@@ -15,12 +15,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :manager, path: "administracao", only: [:index]
     resources :professionals, path: "gerenciar_profissionais" do
-      resources :available_times, path: "horarios_disponiveis", only: %i[create new index] do
+      resources :available_times, path: "horarios_disponiveis" do
+        get :update_all, on: :collection, path: "atualizar"
+        put :update_all, on: :collection, path: "atualizar"
         member {}
       end
     end
     resources :stores, path: "gerenciar_lojas" do
-      resources :available_times, path: "horarios_disponiveis", only: %i[create new index] do
+      resources :available_times, path: "horarios_disponiveis" do
+        get :update_all, on: :collection, path: "atualizar"
+        put :update_all, on: :collection, path: "atualizar"
         member {}
       end
     end

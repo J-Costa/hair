@@ -1,10 +1,11 @@
+
 <div class="container border-solid border border-gray-600 rounded-lg">
   <div class="content-center p-4">
     <div class="justify-between">
       <%= render "shared/simple_alert" %>
-      <h1 class="mt-2 ml-4 text-xl font-semibold">Cadastrar horários para <%= @resource.is_a?(Professional) ? "profissional: " : "loja:" %> <%= @resource.name %></h1>
+      <h1 class="mt-2 ml-4 text-xl mb-2 font-semibold">Editar horários para <%= @resource.is_a?(Professional) ? "profissional: " : "loja:" %> <%= @resource.name %></h1>
       <div class="overflow-x-auto overflow-auto border-solid">
-        <%= form_for [:admin, @resource, @available_time] do |f| %>
+        <%= form_with url: polymorphic_path([:update_all, :admin, @resource, :available_times]), method: :put, as: "blah" do |f| %>
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
@@ -15,23 +16,24 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <% 7.times do |i| %>
+              <% @available_times.each do |i| %>
                 <%= f.fields_for "available_times[]", AvailableTime.new do |ff| %>
                   <tr>
+                    <%= ff.hidden_field :id, value: i.id %>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="text-sm text-gray-900">
-                        <%= ff.hidden_field :weekday, value: i %>
-                        <%= AvailableTime::WEEKDAYS[i.to_s] %>
+                        <%= ff.hidden_field :weekday, value: i.weekday %>
+                        <%= i.weekday_name %>
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900"><%= ff.select :start, options_for_select((0..23).to_a, 8), {}, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5' %></div>
+                      <div class="text-sm text-gray-900"><%= ff.select :start, options_for_select((0..23).to_a, i.start), {}, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5' %></div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900"><%= ff.select :finish, options_for_select((0..23).to_a, 22), {}, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5' %></div>
+                      <div class="text-sm text-gray-900"><%= ff.select :finish, options_for_select((0..23).to_a, i.finish), {}, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5' %></div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900"><%= ff.select :free, options_for_select([['Sim', true], ['Não', false]]), {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5" %></div>
+                      <div class="text-sm text-gray-900"><%= ff.select :free, options_for_select([['Sim', true], ['Não', false]], i.free), {}, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5" %></div>
                     </td>
                   </tr>
                 <% end %>
@@ -39,7 +41,7 @@
             </tbody>
           </table>
           <div class="flex justify-end mt-4">
-            <%= f.submit "Salvar", class: "text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg" %> 
+            <%= f.submit "Salvar", data: { turbo_method: :put }, class: "text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg" %> 
           </div>
         <% end %>
       </div>
