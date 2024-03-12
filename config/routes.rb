@@ -13,8 +13,14 @@ Rails.application.routes.draw do
   resources :services, path: "servicos"
 
   namespace :admin do
+    get 'services/new'
+    get 'services/edit'
+    get 'services/create'
+    get 'services/update'
+    get 'services/index'
     resources :manager, path: "administracao", only: [:index]
     resources :professionals, path: "gerenciar_profissionais" do
+      resources :services, path: "servicos"
       resources :available_times, path: "horarios_disponiveis" do
         get :update_all, on: :collection, path: "atualizar"
         put :update_all, on: :collection, path: "atualizar"
