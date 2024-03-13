@@ -10,6 +10,7 @@ class AvailableTime < ApplicationRecord
 }.with_indifferent_access
   
   belongs_to :timeable, polymorphic: true
+  scope :only_free, -> { where(free: true) }
 
   def weekday_name
     WEEKDAYS[weekday.to_s]

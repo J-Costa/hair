@@ -1,10 +1,9 @@
-
 <div class="relative overflow-hidden bg-white-900 pt-16 pb-32 space-y-24">
   <% @services.each_with_index do |service, index| %>
       <% if index.even? %>
         <div class="relative">
             <div class="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8 ">
-                <div class="mx-auto max-w-xl px-6 lg:mx-24 lg:py-16 lg:px-0">
+                <div class="mx-auto max-w-xl px-6 lg:py-16 lg:px-0">
                     <div>
                         <div class="mt-6">
                             <h2 class="text-3xl font-bold tracking-tight text-dark">
@@ -14,10 +13,7 @@
                                 <%= service.description %>
                             </p>
                             <div class="mt-6">
-                                <a class="inline-flex rounded-lg bg-blue-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-blue-600 hover:bg-blue-700 hover:ring-blue-700"
-                                    href="/login">
-                                    Agendar
-                                </a>
+                                <%= link_to 'Agendar', service_schedules_path(service), class:"inline-flex rounded-lg bg-blue-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-blue-600 hover:bg-blue-700 hover:ring-blue-700" %>
                             </div>
                         </div>
                     </div>
@@ -44,10 +40,7 @@
                                 <%= service.description %>
                             </p>
                             <div class="mt-6">
-                                <a class="inline-flex rounded-lg bg-blue-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-blue-600 hover:bg-blue-700 hover:ring-blue-700"
-                                    href="/login">
-                                    Agendar
-                                </a>
+                                <%= link_to 'Agendar', service_schedules_path(service), class:"inline-flex rounded-lg bg-blue-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-blue-600 hover:bg-blue-700 hover:ring-blue-700" %>
                             </div>
                         </div>
                     </div>

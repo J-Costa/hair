@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service: one
+  professional: one
+  customer: one
+  hour: 1
+  duration: 1
+  price: 1.5
+
+two:
+  service: two
+  professional: two
+  customer: two
+  hour: 1
+  duration: 1
+  price: 1.5

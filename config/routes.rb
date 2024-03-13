@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'schedules/create'
+  get 'schedules/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,7 +12,9 @@ Rails.application.routes.draw do
 
   resources :professionals, path: "profissionais"
   resources :customers, path: "clientes", path_names: { new: "cadastrar" }
-  resources :services, path: "servicos"
+  resources :services, path: "servicos" do
+    resources :schedules, path: "agendar"
+  end
 
   namespace :admin do
     get 'services/new'

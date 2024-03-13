@@ -8,7 +8,10 @@ class UserSessionsController < ApplicationController
 
     if @user&.authenticate(params[:user][:password])
       session["#{user_type}_id".to_sym] = @user.id
-      redirect_to root_path
+      #TODO: Verificar como redirecionar correamten, se bem que, nao precisa verificar
+      return redirect_to params[:path] if params[:path]
+
+      redirect_to services_path
     else
       session.clear
       flash.now[:alert] = "Falha no login, verifique seus dados e tente novamente!"
