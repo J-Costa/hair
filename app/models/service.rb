@@ -1,3 +1,6 @@
 class Service < ApplicationRecord
-  belongs_to :professional
+  has_many :service_professionals
+  has_many :professionals, through: :service_professionals, dependent: :destroy
+
+  has_one_attached :image
 end

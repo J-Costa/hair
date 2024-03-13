@@ -9,3 +9,9 @@
     <%= render "shared/skeleton" %>
   <% end %>
 </div>
+
+<div class="mt-4 mb-2 container border-solid border border-gray-600 rounded-lg">
+  <%= turbo_frame_tag "services", src: admin_services_path do %>
+    <%= render "shared/skeleton" %>
+  <% end %>
+</div>

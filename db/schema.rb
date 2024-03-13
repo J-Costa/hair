@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_155843) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_180610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_155843) do
     t.boolean "admin"
   end
 
+  create_table "service_professionals", force: :cascade do |t|
+    t.bigint "service_id", null: false
+    t.bigint "professional_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["professional_id"], name: "index_service_professionals_on_professional_id"
+    t.index ["service_id"], name: "index_service_professionals_on_service_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -81,8 +90,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_155843) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "professional_id", null: false
-    t.index ["professional_id"], name: "index_services_on_professional_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -96,5 +103,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_155843) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "services", "professionals"
+  add_foreign_key "service_professionals", "professionals"
+  add_foreign_key "service_professionals", "services"
 end

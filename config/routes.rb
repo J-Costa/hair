@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     get 'services/update'
     get 'services/index'
     resources :manager, path: "administracao", only: [:index]
+    resources :services, path: "servicos"
     resources :professionals, path: "gerenciar_profissionais" do
-      resources :services, path: "servicos"
       resources :available_times, path: "horarios_disponiveis" do
         get :update_all, on: :collection, path: "atualizar"
         put :update_all, on: :collection, path: "atualizar"
