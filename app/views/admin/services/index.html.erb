@@ -30,7 +30,7 @@
             <% if @services.any? %>
               <%= render @services %>
             <% else %>
-              <td class="px-6 py-4 whitespace-nowrap" colspan="4">
+              <td class="px-6 py-4 whitespace-nowrap" colspan="5">
                 <div class="text-sm text-gray-900 text-center">
                   Nenhum serviço cadastrado
                   <%= link_to new_admin_service_path, data: { turbo_frame: '_top' }, class: "text-blue-600 inline-flex items-center hover:text-white border border-blue-600 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-900 hover:text-white" do %>

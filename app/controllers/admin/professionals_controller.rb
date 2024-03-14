@@ -49,12 +49,12 @@ class Admin::ProfessionalsController < Admin::BaseController
   end
 
   def professional_update_params
-    params.require(:professional).permit(:name, :email, :phone, :password)
+    params.require(:professional).permit(:name, :email, :phone, :password, :avatar)
           .merge(admin: params[:admin] || false)
   end
 
   def professional_params
-    params.require(:professional).permit(:name, :email, :phone, :password)
+    params.require(:professional).permit(:name, :email, :phone, :password, :avatar)
           .merge(admin: params[:admin] || false, password: "mudar@1234")
   end
 end

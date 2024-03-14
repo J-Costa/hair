@@ -6,6 +6,5 @@ class Professional < ApplicationRecord
   has_many :available_times, as: :timeable
   has_many :schedules
 
-
   has_one_attached :avatar
 end

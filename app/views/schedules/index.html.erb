@@ -1,4 +1,33 @@
 <div>
-  <h1 class="font-bold text-4xl">Schedules#index</h1>
-  <p>Find me in app/views/schedules/index.html.erb</p>
+  <h1 class="text-3xl font-bold tracking-tight text-dark">Agende horário para o serviço: <%= @service.name %></h1>
+  <p class="mt-4 text-lg text-gray-600">Escolha um horário e/ou profissional para agendar um serviço.</p>
+  <div class="lg:grid lg:grid-cols-3 gap-4 md:block ">
+    <% @service.professionals.each do|professional| %>
+      <div class="mt-4 border-2 rounded bg-gray-100">
+        <div class="flex ml-4 mt-4 mb-2 items-center">
+          <div class="flex items-center">
+            <% if professional.avatar.attached? %>
+              <%= image_tag(professional.avatar.representation(resize_to_limit: [200,200]), class: "h-16 w-16 rounded-full") %>
+            <% end %>
+            <p class="ml-4"><%= professional.name %></p>
+          </div>
+        </div>
+        <div class="mx-4 items-center border my-2 rounded bg-gray-50">
+          <p class="mt-2 mx-2">Horários disponíveis: </p>
+          <div class="mx-2 my-2 mt-2 grid grid-cols-4 gap-3">
+            <% professional.available_times.only_free.only_future.each do |at| %>
+              <div class="flex flex-col items-center border-2 rounded gap-1">
+                <p class="content-center"><%= at.weekday_name %></p>
+                <% at.free_hours.each do |hour| %>
+                  <div class="mb-2">
+                    <p class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold me-2 px-2.5 py-0.5 rounded  border border-blue-400 inline-flex items-center justify-center"><%= hour %></p>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -7,8 +7,6 @@ Rails.application.configure do
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.enable_reloading = true
-  config.action_controller.default_url_options = { host: 'www.salon.com.br', port: 5000 }
-  config.hosts << "www.salon.com.br"
 
   # Do not eager load code on boot.
   config.eager_load = false
