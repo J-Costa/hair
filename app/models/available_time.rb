@@ -12,6 +12,7 @@ class AvailableTime < ApplicationRecord
   belongs_to :timeable, polymorphic: true
   scope :only_future, -> { where(weekday: Date.today.wday...) }
   scope :only_free, -> { where(free: true) }
+  scope :rotated_days, -> { order(Arel.sql("CASE WHEN weekday >= #{Date.today.wday} THEN weekday ELSE weekday + 7 END")) }
 
   def weekday_name
     WEEKDAYS[weekday.to_s]

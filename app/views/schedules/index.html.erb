@@ -1,5 +1,6 @@
 <div>
-  <h1 class="text-3xl font-bold tracking-tight text-dark">Agende horário para o serviço: <%= @service.name %></h1>
+  <%= render "shared/simple_alert" %>
+  <h1 class="text-3xl font-bold tracking-tight text-dark">Agendar horário para: <%= @service.name %></h1>
   <p class="mt-4 text-lg text-gray-600">Escolha um horário e/ou profissional para agendar um serviço.</p>
   <div class="lg:grid lg:grid-cols-3 gap-4 md:block ">
     <% @service.professionals.each do|professional| %>
@@ -15,12 +16,23 @@
         <div class="mx-4 items-center border my-2 rounded bg-gray-50">
           <p class="mt-2 mx-2">Horários disponíveis: </p>
           <div class="mx-2 my-2 mt-2 grid grid-cols-4 gap-3">
-            <% professional.available_times.only_free.only_future.each do |at| %>
+            <% professional.available_times.only_free.rotated_days.each_with_index do |at, index| %>
+              <% date = Date.today + index %>
               <div class="flex flex-col items-center border-2 rounded gap-1">
+                <p class="content-center"><%= date %></p>
                 <p class="content-center"><%= at.weekday_name %></p>
                 <% at.free_hours.each do |hour| %>
+                  <% next if @existing_schedules.include?([professional.id, date, hour.to_i]) %>
                   <div class="mb-2">
-                    <p class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold me-2 px-2.5 py-0.5 rounded  border border-blue-400 inline-flex items-center justify-center"><%= hour %></p>
+                    <%= form_with url: service_schedules_path(@service), as: "schedule" do |f| %>
+                      <%= f.hidden_field :professional_id, value: professional.id %>
+                      <%= f.hidden_field :date, value: date %>
+                      <%= f.hidden_field :hour, value: hour %>
+                      <%= f.hidden_field :customer_id, value: @customer.id %>
+                      <%= f.hidden_field :duration, value: @service.duration %>
+                      <%= f.hidden_field :price, value: @service.price %>
+                      <%= f.submit hour, class: "bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold me-2 px-2.5 py-0.5 rounded  border border-blue-400 inline-flex items-center justify-center" %>
+                  <% end %>
                   </div>
                 <% end %>
               </div>
