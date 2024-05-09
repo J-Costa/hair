@@ -1,4 +1,55 @@
-<div class="place-content-center">
-  <h1 class="font-bold text-4xl">Criar conta</h1>
-  <%= render "form" %>
+<div class="mx-auto mt-28 px-5 flex justify-center items-center place-content-center">
+  <div class="w-full max-w-md">
+  <%= render "shared/simple_alert" %>
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h1 class="font-bold text-4xl mb-4">Criar conta</h1>
+      <%= form_for :customer, url: customers_path do |f| %>
+        <% if @customer&.errors %>
+          <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Atenção</span>
+            <div>
+              <span class="font-medium">Verifique os erros:</span>
+                <ul class="mt-1.5 list-disc list-inside">
+                  <% @customer.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+        <div class="flex flex-col sm:flex-row mb-4">
+          <div class="w-full sm:w-1/2 pr-2 mb-2">
+            <%= f.label 'nome', class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= f.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Ex: João Silva" %>
+          </div>
+          <div class="w-full sm:w-1/2 ">
+            <%= f.label 'telefone', class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= f.telephone_field :phone, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: '(11) 91234-5678' %>
+          </div>
+        </div>
+        <div class="mb-4">
+          <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+          <%= f.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: 'exemplo@email.com' %>
+        </div>
+        <div class="flex flex-col sm:flex-row mb-4">
+          <div class="w-full sm:w-1/2 pr-2">
+            <%= f.label "senha", class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= f.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+          </div>
+          <div class="w-full sm:w-1/2 sm:pl-2">
+            <%= f.label "Confirme sua senha", class: "block text-gray-700 text-sm font-bold mb-2" %>
+            <%= f.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+          </div>
+        </div>
+        <div class="mb-6">
+
+        </div>
+        <div class="flex items-center justify-between">
+          <%= f.submit "Criar conta", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+        </div>
+      <% end %>
+    </div>
 </div>

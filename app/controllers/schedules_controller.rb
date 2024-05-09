@@ -17,7 +17,7 @@ class SchedulesController < ApplicationController
     @service = Service.find(params[:service_id])
     @professionals = @service.professionals
     @customer = current_customer
-    @existing_schedules = Schedule.where(customer_id: @customer.id, service_id: @service.id).pluck(:professional_id, :date, :hour)
+    @existing_schedules = Schedule.where(customer_id: @customer&.id, service_id: @service.id).pluck(:professional_id, :date, :hour)
   end
 
   private
