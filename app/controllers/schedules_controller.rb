@@ -7,7 +7,7 @@ class SchedulesController < ApplicationController
     @customer = current_customer
     @schedule = Schedule.new(schedule_params)
     if @schedule.save
-      redirect_to root_path, notice: "Agendamento realizado com sucesso!"
+      redirect_to my_schedules_path, notice: "Agendamento realizado com sucesso!"
     else
       render :index, status: :unprocessable_entity, alert: "Não foi possível realizar o agendamento"
     end
@@ -18,6 +18,15 @@ class SchedulesController < ApplicationController
     @professionals = @service.professionals
     @customer = current_customer
     @existing_schedules = Schedule.where(customer_id: @customer&.id, service_id: @service.id).pluck(:professional_id, :date, :hour)
+  end
+
+  def my_schedules
+    @schedules = if current_customer
+                   Schedule.where(customer_id: current_customer.id)
+                 elsif current_professional
+                   Schedule.where(professional_id: current_professional.id)
+                 end
+    @schedules = @schedules.order(:date, :hour)
   end
 
   private

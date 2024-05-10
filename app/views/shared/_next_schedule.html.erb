@@ -1,0 +1,22 @@
+<% if @next_schedule %>
+  <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
+    <time class="text-lg font-semibold text-gray-900 "><%= l @next_schedule.date, format: :long %></time>
+    <ol class="mt-3 divide-y divider-gray-200">
+      <li>
+        <a href="#" class="items-center block p-3 sm:flex hover:bg-gray-100">
+        <%= image_tag @next_schedule.service.image, class: "w-20 h-20 mb-3 me-3 rounded-full sm:mb-0" %>
+          <div class="text-gray-600">
+            <div class="text-base font-normal text-gray-600">
+              Profissional: <%= @next_schedule.professional.name %>. Serviço: <%= @next_schedule.service.name %>. Descrição: <%= @next_schedule.service.description %>. Preço: <%= number_to_currency @next_schedule.price %>. Duração estimada: <%= @next_schedule.duration %> minutos.
+            </div>
+            <div class="text-sm font-normal">Horário: <%= @next_schedule.hour %>h00</div>
+          </div>
+        </a>
+      </li>
+    </ol>
+  </div>
+<% else %>
+  <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
+    <h1 class="text-lg font-semibold text-gray-900">Nenhum agendamento futuro</h1>
+  </div>
+<% end %>

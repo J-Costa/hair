@@ -1,0 +1,94 @@
+  <div class="content-center p-4">
+    <div class="flex justify-between mb-4">
+      <h1 class="mt-2 ml-4 text-xl font-semibold">Meus agendamentos</h1>
+      <div class="md:hidden" x-data="{ open: false }">
+        <button @click="open = !open" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Menu
+        </button>
+        <div x-show="open" class="mt-2">
+          <%= link_to 'Novo Agendamento', services_path, class: "block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        </div>
+      </div>
+      <div class="hidden md:block">
+        <%= link_to 'Novo Agendamento', services_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " %>
+      </div>
+    </div>
+    <% if current_customer && @schedules.any? %>
+      <% @schedules.pluck(:date).uniq.each do |date| %>
+        <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
+          <time class="text-lg font-semibold text-gray-900 "><%= l date, format: :long %></time>
+          <ol class="mt-3 divide-y divider-gray-200">
+          <% @schedules.where(date: date).each_with_index do |schedule, index| %>
+            <% if index.even? %>
+              <li>
+                <a href="#" class="items-center block p-3 sm:flex hover:bg-gray-100">
+                <%= image_tag schedule.service.image, class: "w-20 h-20 mb-3 me-3 rounded-full sm:mb-0" %>
+                  <div class="text-gray-600">
+                    <div class="text-base font-normal text-gray-600">
+                      Profissional: <%= schedule.professional.name %>. Serviço: <%= schedule.service.name %>. Descrição: <%= schedule.service.description %>. Preço: <%= number_to_currency schedule.price %>. Duração estimada: <%= schedule.duration %> minutos.
+                    </div>
+                    <div class="text-sm font-normal">Horário: <%= schedule.hour %>h00</div>
+                  </div>
+                </a>
+              </li>
+            <% else %>
+              <li>
+                <a href="#" class="items-center block p-3 sm:flex hover:bg-gray-100 -gray-700">
+                  <%= image_tag schedule.service.image, class: "w-20 h-20 mb-3 me-3 rounded-full sm:mb-0" %>
+                  <div>
+                    <div class="text-base font-normal text-gray-600">
+                      Profissional: <%= schedule.professional.name %>. Serviço: <%= schedule.service.name %>. Descrição: <%= schedule.service.description %>. Preço: <%= number_to_currency schedule.price %>. Duração estimada: <%= schedule.duration %> minutos.
+                    </div>
+                    <div class="text-sm font-normal">Horário: <%= schedule.hour %>h00</div>
+                  </div>
+                </a>
+              </li>
+          <% end %>
+        <% end %>
+    </ol>
+</div>
+      <% end %>
+      <% elsif current_professional && @schedules.any? %>
+        <% @schedules.pluck(:date).uniq.each do |date| %>
+        <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50">
+          <time class="text-lg font-semibold text-gray-900 "><%= l date, format: :long %></time>
+          <ol class="mt-3 divide-y divider-gray-200">
+          <% @schedules.where(date: date).each_with_index do |schedule, index| %>
+            <% if index.even? %>
+              <li>
+                <a href="#" class="items-center block p-3 sm:flex hover:bg-gray-100">
+                <%= image_tag schedule.service.image, class: "w-20 h-20 mb-3 me-3 rounded-full sm:mb-0" %>
+                  <div class="text-gray-600">
+                      <div class="text-base font-normal text-gray-600">
+                      Cliente: <%= schedule.customer.name %>. Serviço: <%= schedule.service.name %>. Preço: <%= number_to_currency schedule.price %>. Duração estimada: <%= schedule.duration %> minutos.
+                    </div>
+                    <div class="text-base font-normal text-gray-600">
+                      Telefone: <%= schedule.customer.phone %>. E-mail: <%= schedule.customer.email %>
+                    </div>
+                    <div class="text-sm font-normal">Horário: <%= schedule.hour %>h00</div>
+                  </div>
+                </a>
+              </li>
+            <% else %>
+              <li>
+                <a href="#" class="items-center block p-3 sm:flex hover:bg-gray-100 -gray-700">
+                  <%= image_tag schedule.service.image, class: "w-20 h-20 mb-3 me-3 rounded-full sm:mb-0" %>
+                  <div>
+                    <div class="text-base font-normal text-gray-600">
+                      Cliente: <%= schedule.customer.name %>. Serviço: <%= schedule.service.name %>. Preço: <%= number_to_currency schedule.price %>. Duração estimada: <%= schedule.duration %> minutos.
+                    </div>
+                    <div class="text-base font-normal text-gray-600">
+                      Telefone: <%= schedule.customer.phone %>. E-mail: <%= schedule.customer.email %>
+                    </div>
+                    <div class="text-sm font-normal">Horário: <%= schedule.hour %>h00</div>
+                  </div>
+                </a>
+              </li>
+          <% end %>
+        <% end %>
+    </ol>
+</div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>

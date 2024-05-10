@@ -1,5 +1,44 @@
 <% if current_user %>
   <h1>Bem vindo, <%= current_user.name %>!</h1>
+  <h1 class="my-2 text-xl font-semibold">Próximos agendamentos</h1>
+  <%= render "shared/next_schedule" %>
 <% else %>
-  <h1>Olá, visitante!</h1>
+  <h1 class="mb-4">Olá, visitante! </h1>
 <% end %>
+  <h1 class="mt-2 divide-y-2 text-xl font-semibold">Nossas unidades</h1>
+  <div class="lg:grid lg:grid-cols-2 gap-4 md:block">
+    <% @stores.each do |store| %>
+      <div class="block my-4 border rounded bg-gray-50 border-gray-100">
+        <div class="mb-2">
+          <%= image_tag store.image, class: "mt-2 w-20 h-20 mb-3 rounded-full sm:mb-0" %>
+          <p class="ml-2"><%= store.name %></p>
+          <p class="ml-2"><%= store.phone %></p>
+        </div>
+        <div class="divide-y">
+          <p class="ml-2"><%= store.address %></p>
+          <%= @unit_frames[:"#{store.id}"].html_safe %>
+        </div>
+        <div>
+          <% store.available_times.each do |time| %>
+            <p class="ml-2"><%= "#{time.weekday_name} #{time.start}:00 - #{time.finish}:00" %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <h1 class="mt-2 text-xl font-semibold">Serviços</h1>
+  <div class="lg:grid lg:grid-cols-2 gap-4 md:block">
+    <% @services.each do |service| %>
+      <div class="block my-4 border rounded bg-gray-50 border-gray-100">
+        <div class="mb-2">
+          <%= image_tag service.image, class: "mt-2 ml-2 w-20 h-20 mb-3 rounded-full sm:mb-0" %>
+          <p class="ml-2"><%= service.name %></p>
+          <p class="ml-2"><%= number_to_currency service.price %></p>
+          <%= link_to 'Reservar', service_schedules_path(service), class:"inline-flex rounded-lg bg-blue-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-blue-600 hover:bg-blue-700 hover:ring-blue-700" %>
+        </div>
+        <div class="divide-y">
+          <p class="ml-2"><%= service.description %></p>
+          <p class="ml-2"><%= service.duration %> minutos</p>
+        </div>
+      </div>
+    <% end %>

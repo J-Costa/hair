@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root "landing_pages#index"
 
   resources :professionals, path: "profissionais"
+
+  get :my_schedules, path: "meus_agendamentos", controller: :schedules, action: :my_schedules
+
   resources :customers, path: "clientes", path_names: { new: "cadastrar" }
   resources :services, path: "servicos" do
     resources :schedules, path: "agendar"

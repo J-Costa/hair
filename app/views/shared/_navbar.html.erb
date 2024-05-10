@@ -6,6 +6,9 @@
   </a>
   <div class="flex md:order-2 space-x-3 md:space-x-2 rtl:space-x-reverse">
       <% if current_user %>
+        <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full ">
+            <span class="font-medium text-gray-600 "><%= current_user.name.first %></span>
+        </div>
         <%= link_to "logout", logout_path, class: "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800", data: { turbo_method: :delete } %>
       <% else %>
         <%= link_to "Criar conta", new_customer_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
@@ -24,11 +27,13 @@
         <a href="/" class="block py-2 px-3 text-dark md:bg-transparent md:p-0 <%= current_page?(root_path) ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded' %>">Home</a>
       </li>
       <li>
-        <%= link_to "Profissionais", professionals_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{current_page?(professionals_path) ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
-      </li>
-      <li>
         <%= link_to "Serviços", services_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{current_page?(services_path) ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
       </li>
+      <% if current_user %>
+        <li>
+          <%= link_to "Meus agendamentos", my_schedules_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{request.path.include?('meus_agendamentos') ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
+        </li>
+      <% end %>
       <% if current_professional&.admin? %>
         <li>
           <%= link_to "Administração", admin_manager_index_path, class: "block py-2 px-3 text-dark md:bg-transparent md:p-0 #{request.path.include?('admin') ? 'md:text-blue-700 md:dark:text-blue-500 bg-blue-700 rounded text-white' : 'md:hover:text-blue-500 md:hover:bg-transparent hover:bg-gray-200 hover:rounded'}" %>
